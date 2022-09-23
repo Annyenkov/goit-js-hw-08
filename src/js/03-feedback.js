@@ -15,12 +15,19 @@ saveData();
 
 function onFormSubmit(evt) {
   evt.preventDefault();
+  if (refs.email.value === '' || refs.message.value === '') {
+    return alert('Всі поля повинні бути заповнені.');
+  } 
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY)
 }
 
 function onInput(evt) {
-  formData[evt.target.name] = evt.target.value;
+  const formData = {
+     email: '',
+     message: '',
+   }
+   formData[evt.target.name] = evt.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
